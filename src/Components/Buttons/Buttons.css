@@ -1,0 +1,63 @@
+.button_filter:hover {
+    background:rgb(212, 241, 212);
+    }
+    
+.button_filter:focus {
+    background:rgb(180, 228, 236);
+    }
+
+.all-button {
+    margin-bottom: 20px;
+    margin-left: 10px;
+    display: flex;
+    }
+      
+.button_with_input {
+    display: flex;
+    }
+    
+    
+.button_change_status:after {
+    content: "˅";
+    text-align: center;
+    font-size: 40px;
+    border: 1px solid #666;
+    display: inline-block;
+    position: relative;
+    width: 41px;
+    height: 41px;
+    }
+
+.clear {
+    margin-left: 70px;
+    }
+    
+    .itemsleft {
+    margin-left: 10px;
+    }
+    
+    .actived {
+    display: inline-flex;
+    margin-top: 10px;
+    
+    }
+    
+    
+    
+.completed {
+    margin-top: 10px;
+    display: inline-flex;
+    text-decoration: line-through;
+    color: gray;
+    }
+
+input {
+    width: 450px;
+    font-size: xx-large;
+    }
+
+.footer {
+    margin-top: 10px;
+    display: inline-flex;
+    }
+      

@@ -1,71 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes, { element } from 'prop-types'
+import TodoList from './Components/Todo/TodoList'
+import Buttons from './Components/Buttons/ButtonsFilter';
+import ButtonClear from './Components/Buttons/ButtonClear';
+import ButtonChangeStatus from './Components/Buttons/ButtonState';
 import './App.css'
-import ReactDOM from 'react-dom';
-
-class TodoList extends Component {
-
-  render() {
-    return <div className="todo-list">
-      {this.props.list.map((item) => <TodoItem key={item.id} onClick={this.props.onItemChange} {...item} ></TodoItem>)}
-    </div>
-  }
-}
-
-class Icon extends Component {
-
-  render(){
-    const {isCompleted} = this.props;
-    return <div className={isCompleted ? "check" : "uncheck"} type="checkbox"></div>
-  }
-
-}
-
-class TodoItem extends Component {
-  
-  render() {
-    const { id, task, isCompleted, onClick } = this.props;
-
-    return <div onClick={() => onClick(id)} id={id} className={isCompleted ? "completed" : "actived"}><Icon isCompleted={isCompleted} />{task}</div>
-  }
-}
+import './Components/Buttons/Buttons.css'
+import './Components/Todo/Todo.css'
 
 
-class ButtonClear extends Component {
 
-  render() {
-    return (
-      <div className="clear-panel">
-          <button className="button clear" onClick={() => this.props.handleClear()}> Clear completed</button>
-        </div>
-    )
-  }
-}
-
-class Buttons extends Component {
-
-  render() {
-    return (
-      <div className="all-button">
-        <div className="filters-panel">
-        <button className="button_filter" onClick={() => this.props.onChangeFilter("all")}>All</button>
-        <button className="button_filter" onClick={() => this.props.onChangeFilter("actived")}>Actived</button>
-        <button className="button_filter" onClick={() => this.props.onChangeFilter("completed")}>Completed</button>
-        </div>
-      </div>
-    );
-  }
-}
-
-
-class ButtonChangeStatus extends Component {
-  render() {
-    const list = this.props.list
-    return(
-    <div className="button_change_status" onClick= {() => console.log(this.props)}></div>
-    );
-  }
-}
 
 
 export default class App extends Component {
@@ -77,6 +20,7 @@ export default class App extends Component {
     this.onItemChange = this.onItemChange.bind(this);
     this.handleChangeFilter = this.handleChangeFilter.bind(this)
     this.handleClear = this.handleClear.bind(this)
+    this.handleChangeSatus = this.handleChangeSatus.bind(this)
   }
 
   state = {
@@ -110,17 +54,15 @@ export default class App extends Component {
     this.setState({ filter })
   }
 
+  handleChangeSatus () {
+
+    this.setState(({list}) => {
+      return list.map(el => !el.isCompleted ? el.isCompleted = true : true)
+    })
+  }
+
   onItemChange(id) {
-    // const list = this.state.list
-    // list.forEach((el) => {
-    //   if (el.id === id) {
-    //     if (el.isCompleted) {
-    //       el.isCompleted = false
-    //       this.setState({list})
-    //     } else { el.isCompleted = true };
-    //     this.setState({list});
-    //   }
-    // })
+
     this.setState(({ list }) => {
       return { list: list.map(el => el.id === id ? { ...el, isCompleted: !el.isCompleted } : el) };
     });
@@ -138,7 +80,7 @@ export default class App extends Component {
       <div className="main">
         <div><h3>Task List</h3></div>
         <div className="button_with_input">
-        <ButtonChangeStatus />
+        <ButtonChangeStatus list = {list} handleChangeSatus={this.handleChangeSatus}/>
         <div className="input">
           <input type="text" value={this.state.value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
         </div>
