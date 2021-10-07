@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
-import TodoList from './Components/Todo/TodoList'
-import Buttons from './Components/Buttons/ButtonsFilter';
-import ButtonClear from './Components/Buttons/ButtonClear';
-import ButtonChangeStatus from './Components/Buttons/ButtonState';
+import { StatusButton, Buttons, ButtonClear } from './Components/Buttons';
+import TodoList from './Components/Todo/TodoList';
 import './App.css'
-import './Components/Buttons/Buttons.css'
-import './Components/Todo/Todo.css'
-
-
-
-
 
 export default class App extends Component {
   constructor() {
@@ -33,7 +25,6 @@ export default class App extends Component {
     let list = this.state.list
     list = list.filter((el) => el.isCompleted === false)
     this.setState({list})
-
   }
 
   handleChange(event) {
@@ -80,7 +71,7 @@ export default class App extends Component {
       <div className="main">
         <div><h3>Task List</h3></div>
         <div className="button_with_input">
-        <ButtonChangeStatus list = {list} handleChangeSatus={this.handleChangeSatus}/>
+        <StatusButton list = {list} handleChangeSatus={this.handleChangeSatus}/>
         <div className="input">
           <input type="text" value={this.state.value} onChange={this.handleChange} onKeyDown={this.handleKeyDown} />
         </div>

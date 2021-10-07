@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import './ButtonsState.css';
 
 
-
-class ButtonChangeStatus extends Component {
+class StatusButton extends Component {
     render() {
       return(
-      <div className="button_change_status" onClick= {() => this.props.handleChangeSatus()}></div>
+      <div className="button_change_status" onClick= {() => this.props.handleChangeSatus()} />
       );
     }
   }
 
-  export default ButtonChangeStatus
+export default StatusButton;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TodoItem from './TodoItem';
-
+import './TodoList.css'
 
 class TodoList extends Component {
 
@@ -11,5 +11,4 @@ class TodoList extends Component {
     }
   }
 
-
-  export default TodoList
+export default TodoList

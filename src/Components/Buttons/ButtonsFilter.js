@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './ButtonsFilter.css';
+
 
 
 class Buttons extends Component {

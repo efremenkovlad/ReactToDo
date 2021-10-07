@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Icon from "./Icon";
+import './TodoItem.css'
 
 
 class TodoItem extends Component {
