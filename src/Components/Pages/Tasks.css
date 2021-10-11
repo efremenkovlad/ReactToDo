@@ -1,0 +1,27 @@
+body {
+  
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  
+  }
+  
+  .main {
+    border-width:1;
+    border-color: rgb(190,190,190);
+    border-style: solid;
+    background-color: white;
+  }
+  
+  h3 {
+    text-align: center;
+  }
+  
+  
+      
+  .itemsleft {
+    margin-left: 10px;
+    }
+  
+  
+  
