@@ -41,7 +41,6 @@ async function addTask (task) {
     
 }
 
-
 async function changeState(id) {
 
     const res = await fetch (URL_ADDRESS + '/' + id, {

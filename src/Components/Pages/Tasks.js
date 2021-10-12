@@ -81,6 +81,7 @@ class Tasks extends Component {
     
         return (
           <div className="main">
+            
             <div><h3>Task List</h3></div>
             <div className="button_with_input">
             <StatusButton list = {list} handleChangeSatus={this.handleChangeSatus}/>
