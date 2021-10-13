@@ -2,8 +2,8 @@ import { Component } from "react";
 import { StatusButton, Buttons, ButtonClear } from '../../Components/Buttons';
 import TodoList from '../../Components/Todo/TodoList';
 import {getList, addTask, changeState, getTask, clearCompleted, changeStateAll} from '../../API/requests';
-
 import './Tasks.css'
+
 
 
 class Tasks extends Component {
@@ -25,9 +25,9 @@ class Tasks extends Component {
         list: [],
       };
       async componentDidMount() {
-        const list = await getList()
-    
-        this.setState(({ list }))
+        const list = await getList().catch(err => this.props.history.push('/login'));
+        console.log(list)
+        if (list) this.setState(({ list }))
       }
     
       async handleClear() {
@@ -72,13 +72,18 @@ class Tasks extends Component {
     
     
       render() {
+
         const {history} = this.props
+        console.log(this.state.list);
         const list = this.state.list.filter(({ isCompleted }) => {
           if (this.state.filter === 'all') return true;
           if (this.state.filter === 'actived') return !isCompleted
           else return isCompleted;
         });
-    
+      
+      
+      
+
         return (
           <div className="main">
             

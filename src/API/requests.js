@@ -3,8 +3,6 @@ import { func } from "prop-types";
 
 const URL_ADDRESS = 'http://localhost:4000/tasks'
 
-
-
 async function getList () {
 
     const res = await fetch( URL_ADDRESS + '/', {
@@ -18,9 +16,9 @@ async function getList () {
     if (res.ok) {
         const data = await res.json();
         return data;
-    } else {console.log(res)};
+    } else {
+        throw new Error(res);}
 }
-
 
 async function addTask (task) {
     const isCompleted = false
@@ -37,8 +35,6 @@ async function addTask (task) {
         const data = await res.json();
         return data
     }
-
-    
 }
 
 async function changeState(id) {
@@ -70,7 +66,6 @@ async function getTask (id) {
     } 
 } 
 
-
 async function clearCompleted (listId) {
 
     const res = await fetch (URL_ADDRESS + '/delete', {
@@ -101,8 +96,6 @@ async function changeStateAll(list) {
         return data;
     }
 }
-
-
 
 export {getList, addTask, changeState, getTask, clearCompleted, changeStateAll}
 

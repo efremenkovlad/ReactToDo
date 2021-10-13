@@ -1,13 +1,18 @@
 import { render } from "@testing-library/react"
 import { Component } from "react"
+import getJWT from '../../API/requestsJwt' 
 import './About.css'
 
 
 
 class About extends Component{
 
+
+    state = {
+        isAuth: false
+      };
+
     render() {
-        // const { history } = this.props
 
         return <div className='about'>Hello, it's my app</div>
     }

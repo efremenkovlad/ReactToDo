@@ -17,13 +17,14 @@ class Login extends Component{
     state = {
         email: '',
         password: '',
+        isAuthenticated: false
     };
 
     async handleSignin() {
         const {email, password} = this.state
         const res = await signIn (email, password)
         if (res.user) {
-            window.location.assign('/task')
+            window.location.assign('/tasks')
         }
       }
 

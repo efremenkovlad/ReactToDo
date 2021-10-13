@@ -16,6 +16,7 @@ class SignUp extends Component{
     state = {
         email: '',
         password: '',
+
     };
 
     async handleSignup() {
@@ -24,8 +25,9 @@ class SignUp extends Component{
         const res = await signUp(email, password)
         console.log(res);
         if (res.user) {
-            console.log(res)
+
             this.props.history.push('/tasks');
+
         }
     }
 
