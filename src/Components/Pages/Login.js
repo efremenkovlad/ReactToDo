@@ -1,51 +1,75 @@
-import { render } from "@testing-library/react"
-import { Component } from "react"
-import { signIn } from "../../API/requestsUsers";
+import { func } from "prop-types";
+import { Component } from "react";
+import { getList } from "../../API/requests";
+import { logIn } from "../../API/requestsUsers";
+import ChechAuth from "./checkAuth";
 
+import "./Login.css";
 
+class Login extends Component {
+  constructor() {
+    super();
 
-class Login extends Component{
+    this.handlelogIn = this.handlelogIn.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
+    this.handleChangeEmail = this.handleChangeEmail.bind(this);
+  }
 
-    constructor() {
-        super();
+  state = {
+    email: "",
+    password: "",
+    error: null,
+  };
 
-        this.handleSignin = this.handleSignin.bind(this);
-        this.handleChangePassword = this.handleChangePassword.bind(this);
-        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+  async handlelogIn() {
+    const { email, password } = this.state;
+    const res = await logIn(email, password);
+    if (res.user) {
+      window.location.assign("/tasks");
+    } else {
+      console.log(res);
+      this.setState({ error: "Incorrect email or password!" });
     }
+  }
 
-    state = {
-        email: '',
-        password: '',
-        isAuthenticated: false
-    };
+  handleChangeEmail(event) {
+    this.setState({ email: event.target.value });
+  }
 
-    async handleSignin() {
-        const {email, password} = this.state
-        const res = await signIn (email, password)
-        if (res.user) {
-            window.location.assign('/tasks')
-        }
-      }
+  handleChangePassword(event) {
+    this.setState({ password: event.target.value });
+  }
 
-    handleChangeEmail(event) {
-        this.setState({ email: event.target.value});
-        }
+  render() {
+    const { error } = this.state;
 
-    handleChangePassword(event) {
-        this.setState({ password: event.target.value});
-        }
-    render() {
-
-        return (
-        <div>
-        <input type="email" value={this.state.email} onChange={this.handleChangeEmail}/>
-        <input type="password" value={this.state.password} onChange={this.handleChangePassword}/>
-        <button className="signup" onClick={() => this.handleSignin()}>Login</button>
+    return (
+      <div className="login">
+        <div className="email">
+          <input
+            type="email"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.handleChangeEmail}
+          />
         </div>
-        )
-    }
-
+        <div className="password">
+          <input
+            type="password"
+            placeholder="Password"
+            value={this.state.password}
+            onChange={this.handleChangePassword}
+          />
+        </div>
+        <div className="sign">
+          <button className="signup" onClick={() => this.handlelogIn()}>
+            Login
+          </button>
+          {error && <ChechAuth error={error} />}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Login
+export default Login;

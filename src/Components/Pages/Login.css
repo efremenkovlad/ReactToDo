@@ -1,0 +1,39 @@
+.login {
+  margin-top: 50px;
+}
+
+.email {
+  margin-top: 50px;
+}
+
+.password {
+  margin-top: 30px;
+}
+
+.signup {
+  font-size: x-large;
+}
+
+.sign {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder {
+
+  text-align: center;
+}
+
+::-moz-placeholder {
+
+  text-align: center;
+}
+
+:-ms-input-placeholder {
+  text-align: center;
+}
